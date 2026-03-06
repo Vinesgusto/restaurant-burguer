@@ -1,14 +1,11 @@
 {
   "name": "cardapio",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx tailwindcss -i ./styles/style.css -o ./styles/output.css --watch"
+    "build": "npx tailwindcss -i ./styles/style.css -o ./styles/output.css",
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "tailwindcss": "^3.4.1"
   }
