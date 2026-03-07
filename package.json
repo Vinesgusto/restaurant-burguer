@@ -1,12 +1,15 @@
 {
   "name": "cardapio",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./scripts/script.js",
   "scripts": {
     "build": "npx tailwindcss -i ./styles/style.css -o ./styles/output.css",
     "start": "node index.js"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
   }
 }
