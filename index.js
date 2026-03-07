@@ -1,12 +1,14 @@
 const express = require("express");
+const path = require("path");
+
 const app = express();
 
-// rotas
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
-  res.send("Servidor funcionando!");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// porta da Render
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
