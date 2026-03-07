@@ -57,22 +57,6 @@ menu.addEventListener("click", function (event) {
   }
 });
 
-phoneInput.addEventListener("input", (e) => {
-  let value = e.target.value.replace(/\D/g, ""); // remove tudo que não é número
-  if (value.length > 11) value = value.slice(0, 11); // limita a 11 dígitos
-
-  // Formata (XX) XXXXX-XXXX
-  if (value.length > 6) {
-    value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
-  } else if (value.length > 2) {
-    value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-  } else if (value.length > 0) {
-    value = `(${value}`;
-  }
-
-  e.target.value = value;
-});
-
 function addToCart(name, price) {
   const nameExisting = cart.find((item) => item.name === name);
 
@@ -155,6 +139,23 @@ function removeItemCart(name) {
     updateCartModal();
   }
 }
+
+phoneInput.addEventListener("input", (e) => {
+  let value = e.target.value.replace(/\D/g, ""); // remove tudo que não é número
+  if (value.length > 11) value = value.slice(0, 11); // limita a 11 dígitos
+
+  // Formata (XX) XXXXX-XXXX
+  if (value.length > 6) {
+    value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+  } else if (value.length > 2) {
+    value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+  } else if (value.length > 0) {
+    value = `(${value}`;
+  }
+
+  e.target.value = value;
+});
+
 adressInput.addEventListener("input", function (event) {
   let inputValue = event.target.value;
 
