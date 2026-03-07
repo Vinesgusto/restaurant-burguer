@@ -21,6 +21,7 @@ const phoneInput = document.getElementById("number-phone");
 const phoneWarn = document.getElementById("phone-warn");
 const btnRemove = document.getElementById("remove-btn");
 const redBtn = document.getElementById("red-btn");
+const inputDiv = document.getElementById("div-input");
 
 let cart = [];
 
@@ -54,6 +55,22 @@ menu.addEventListener("click", function (event) {
     const price = parseFloat(parentButton.getAttribute("data-price"));
     addToCart(name, price);
   }
+});
+
+phoneInput.addEventListener("input", (e) => {
+  let value = e.target.value.replace(/\D/g, ""); // remove tudo que não é número
+  if (value.length > 11) value = value.slice(0, 11); // limita a 11 dígitos
+
+  // Formata (XX) XXXXX-XXXX
+  if (value.length > 6) {
+    value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+  } else if (value.length > 2) {
+    value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+  } else if (value.length > 0) {
+    value = `(${value}`;
+  }
+
+  e.target.value = value;
 });
 
 function addToCart(name, price) {
@@ -209,28 +226,29 @@ checkoutBtn.addEventListener("click", function () {
   localStorage.setItem("orderNumber", orderNumber);
 
   if (cart.length === 0) return;
-  if (
-    adressInput.value |
-    nameInput.value |
-    bairroInput.value |
-    cityInput.value |
-    numberHouseInput.value |
-    (phoneInput.value === "")
-  ) {
-    adressWarn.classList.remove("hidden");
-    adressInput.classList.add("border-red-500");
-    nameWarn.classList.remove("hidden");
-    nameInput.classList.add("border-red-500");
-    bairroWarn.classList.remove("hidden");
-    bairroInput.classList.add("border-red-500");
-    cityWarn.classList.remove("hidden");
-    cityInput.classList.add("border-red-500");
-    numberHouseWarn.classList.remove("hidden");
-    numberHouseInput.classList.add("border-red-500");
-    phoneWarn.classList.remove("hidden");
-    phoneInput.classList.add("border-red-500");
-    return;
-  }
+  const inputs = [
+    { input: nameInput, warn: nameWarn },
+    { input: adressInput, warn: adressWarn },
+    { input: bairroInput, warn: bairroWarn },
+    { input: cityInput, warn: cityWarn },
+    { input: numberHouseInput, warn: numberHouseWarn },
+    { input: phoneInput, warn: phoneWarn },
+  ];
+
+  let hasError = false;
+
+  inputs.forEach(({ input, warn }) => {
+    if (input.value.trim() === "") {
+      warn.classList.remove("hidden");
+      input.classList.add("border-red-500");
+      hasError = true;
+    } else {
+      warn.classList.add("hidden");
+      input.classList.remove("border-red-500");
+    }
+  });
+
+  if (hasError) return;
 
   let total = 0;
   cart.forEach((item) => {

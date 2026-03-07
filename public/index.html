@@ -252,7 +252,7 @@
 
         <p class="font-bold">Total: <span id="cart-total">0.00</span></p>
         <p class="font-bold mt-4">Endereço de Entrega</p>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2" id="div-input">
           <input
             type="text"
             placeholder="Nome Completo"
@@ -278,10 +278,12 @@
             class="border-2 p-1 rounded my-1"
           />
           <input
-            type="text"
+            type="number"
             placeholder="Número da Casa"
-            id="house-number"
-            class="border-2 p-1 rounded my-1"
+            id="numberHouse"
+            class="w-full border-2 p-1 rounded"
+            min="1"
+            step="1"
           />
           <input
             type="text"
