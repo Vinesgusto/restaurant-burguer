@@ -243,22 +243,73 @@
       class="bg-black/50 w-full h-full fixed top-0 left-0 z-[99]items-center justify-center hidden"
       id="cart-modal"
     >
-      <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
+      <div
+        class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px] max-h-[80vh] overflow-y-auto"
+      >
         <h2 class="text-center font-bold text-2xl mb-2">Meu Carrinho</h2>
 
         <div id="cart-items" class="flex justify-between mb-2 flex-col"></div>
 
         <p class="font-bold">Total: <span id="cart-total">0.00</span></p>
         <p class="font-bold mt-4">Endereço de Entrega</p>
-        <input
-          type="text"
-          placeholder="Digite Seu Endereço"
-          id="address"
-          class="w=full border-2 p-1 rounded my-1"
-        />
+        <div class="flex flex-col gap-2">
+          <input
+            type="text"
+            placeholder="Nome Completo"
+            id="name"
+            class="border-2 p-1 rounded my-1"
+          />
+          <input
+            type="text"
+            placeholder="Nome da Rua"
+            id="address"
+            class="border-2 p-1 rounded my-1"
+          />
+          <input
+            type="text"
+            placeholder="Bairro"
+            id="neighborhood"
+            class="border-2 p-1 rounded my-1"
+          />
+          <input
+            type="text"
+            placeholder="Cidade"
+            id="city"
+            class="border-2 p-1 rounded my-1"
+          />
+          <input
+            type="text"
+            placeholder="Número da Casa"
+            id="house-number"
+            class="border-2 p-1 rounded my-1"
+          />
+          <input
+            type="text"
+            placeholder="Ponto de Referência (Opicional)"
+            id="point-reference"
+            class="border-2 p-1 rounded my-1"
+          />
+          <input
+            type="text"
+            placeholder="Digite Seu Número"
+            id="number-phone"
+            class="border-2 p-1 rounded my-1"
+          />
+        </div>
 
+        <p class="text-red-500 hidden" id="name-warn">
+          Digite seu Nome Completo
+        </p>
         <p class="text-red-500 hidden" id="address-warn">
-          Digite seu Endereço Completo
+          Digite o Nome da Rua
+        </p>
+        <p class="text-red-500 hidden" id="bairro-warn">Digite Seu Bairro</p>
+        <p class="text-red-500 hidden" id="city-warn">Digite Sua Cidade</p>
+        <p class="text-red-500 hidden" id="numberhouse-warn">
+          Digite o Número da Casa
+        </p>
+        <p class="text-red-500 hidden" id="phone-warn">
+          Digite seu Número de Celular
         </p>
 
         <div class="flex items-center justify-between mt-5 w-full">
@@ -277,6 +328,7 @@
     <!-- Botão Carrinho Footer  -->
     <footer
       class="w-full bg-red-500 py-3 fixed bottom-0 z-40 flex items-center justify-center"
+      id="red-btn"
     >
       <button
         class="flex items-center gap-2 text-white font-bold hover:scale-110 duration-300"
